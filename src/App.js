@@ -1,24 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types'
+import { HashRouter, Route} from "react-router-dom";
+import About from "./routes/About"
+import Home from "./routes/Home"
+import Navigation from "./components/Navigation"
+import Detail from "./routes/Detail"
+import "./App.css"
 
-class App extends React.Component {
-  state = {
-    count:0 // * data want to change dynamically
-  }
-  add = ()=>{
-    console.log('add');
-  };
-  minus = () => {
-    console.log('minus');
-  }
-  render() {
-  // * add works only when button is pressed, add() will be prompted immediately
-  return <div>
-    <h1>The number is : {this.state.count}</h1>
-    <button onClick={this.add}>Add</button>
-    <button onClick={this.minus}>Minus</button>
-  </div>
-  }
+function App() {
+  return <HashRouter>
+    <Navigation />
+    <Route path="/" exact={true} component={Home} />
+    <Route path="/about" exact={true} component={About}/>
+    <Route path="/movie/:id" component={Detail}/>
+  </HashRouter>
 }
 
 export default App;
